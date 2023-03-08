@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="landing">
+        <div class="landingLogo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='img/landing.jpg') }}" alt="Failed to load image">
+            </a>
+        </div>
+        <div class="buttons">
+            <button class="signup">Signup</button>
+            <button class="login">Login</button>
+        </div>
+        
+        <div class="content">
+            
+        </div>
+    </div>
+
+{% endblock %}

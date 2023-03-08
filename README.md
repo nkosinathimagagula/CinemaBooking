@@ -1,5 +1,6 @@
-# CinemaBooking
-Online Cinema Booking web application using Flask
+# CinemaBooking (CINEVERSE)
+Online Cinema Booking web application using Flask framework
+'Cineverse' :)
 
 ## Development environment
 ### virtual environment used && activating the venv
