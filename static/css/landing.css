@@ -9,6 +9,7 @@
     height: 100px;
 }
 
+ /*buttons*/
 .buttons {
     width: 200px;
     margin-left: 30px;
@@ -21,4 +22,72 @@
 .buttons .login {
     min-width: 60px;
     min-height: 30px;
+}
+
+ /*image animation styling*/
+.content {
+    position: relative;
+    width: 900px;
+    margin: 100px auto;
+    perspective: 800px;
+}
+.image-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    animation: animate 20s steps(10000, end) infinite;
+}
+.image-area img {
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    border: 2px solid #ffffff;
+}
+
+.image-one {
+    transform: rotateY(0deg) translateZ(300px);
+}
+.image-two {
+    transform: rotateY(30deg) translateZ(300px);
+}
+.image-three {
+    transform: rotateY(60deg) translateZ(300px);
+}
+.image-four {
+    transform: rotateY(90deg) translateZ(300px);
+}
+.image-five {
+    transform: rotateY(120deg) translateZ(300px);
+}
+.image-six {
+    transform: rotateY(150deg) translateZ(300px);
+}
+.image-seven {
+    transform: rotateY(180deg) translateZ(300px);
+}
+.image-eight {
+    transform: rotateY(210deg) translateZ(300px);
+}
+.image-nine {
+    transform: rotateY(240deg) translateZ(300px);
+}
+.image-ten {
+    transform: rotateY(270deg) translateZ(300px);
+}
+.image-eleven {
+    transform: rotateY(300deg) translateZ(300px);
+}
+.image-twelve {
+    transform: rotateY(330deg) translateZ(300px);
+}
+@keyframes animate {
+    from{
+        transform: rotateY(-360deg);
+    }
+    to{
+        transform: rotateY(0deg);
+    }
+    
 }
