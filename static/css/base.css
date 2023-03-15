@@ -1,5 +1,9 @@
 body {
     margin: auto;
-    background-color: #000000;
+    background-image: url("../img/sl_121019_25870_55.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
     color: #ffffff;
 }

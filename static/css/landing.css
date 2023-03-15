@@ -27,14 +27,14 @@
  /*image animation styling*/
 .content {
     position: relative;
-    width: 900px;
+    width: 100px;
     margin: 100px auto;
     perspective: 600px;
 }
 .image-area{
     position: relative;
     transform-style: preserve-3d;
-    animation: animate 30s linear infinite;
+    animation: animate 20s linear infinite;
 }
 .image-area img {
     width: 100px;
@@ -42,7 +42,7 @@
     border: 2px solid #ffffff;
 }
 .image-area span {
-    left: 50%;
+    margin: auto;
     position: absolute;
     transform: rotateY(calc(var(--i)*30deg)) translateZ(300px);
 }
