@@ -1,0 +1,19 @@
+.box {
+    margin: auto;
+    border: 1px solid #1a1a1a;
+    border-radius: 5px;
+    text-align: center;
+}
+.box img {
+    width: 85px;
+    height: 60px;
+}
+form input {
+    background: transparent;
+    border: 0;
+    border-bottom:  1px solid #ffffff;
+    color: #ffffff;
+}
+form input:focus {
+    outline: none;
+}

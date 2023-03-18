@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+    
+{% block body %}
+    <div class="box">
+        <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Failed to load image">
+        <h1>Signup</h1>
+
+        <form action="", method="post">
+            <p>Firstname</p>
+            <input type="text" name="firstname" placeholder="Enter your firstname">
+            <p>Lastname</p>
+            <input type="text" name="lastname" placeholder="Enter your lastname">
+            <p>Email</p>
+            <input type="email" name="email" placeholder="Enter your email">
+            <p>Password</p>
+            <input type="password" name="password">
+            <p>Confirm Password</p>
+            <input type="password" name="password">
+        </form>
+    </div>
+{% endblock %}
