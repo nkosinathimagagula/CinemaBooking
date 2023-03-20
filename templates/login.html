@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+    
+{% block body %}
+    <div class="box">
+        <a href="/">
+            <button id="cancel" type="reset">x</button>
+        </a>
+
+        <div  class="content">
+            <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Failed to load image">
+            <h1>Login</h1>
+
+            <form action="", method="post">
+                <p>Email</p>
+                <input type="email" name="email" placeholder="Enter your email">
+                <p>Password</p>
+                <input type="password" name="password">
+
+                <br>
+                <br>
+                <a href="/home">
+                    <button class="login" type="submit">Login</button>
+                </a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
