@@ -9,6 +9,7 @@ source venv/bin/activate
 
 ## installing Flask and setting the requiements
 pip install Flask
+pip install flask-sqlalchemy (using SQLAlchemy for database)
 pip freeze > requirements.txt
 
 ### Installing all the packages for this project
