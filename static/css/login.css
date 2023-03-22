@@ -60,3 +60,11 @@ form p {
     background-color: #cccccc;
     /* background-color: rgb(153, 153, 153); */
 }
+.error {
+    color: rgb(255, 50, 0);
+    font-size: 13px;
+}
+.message {
+    color: rgb(25, 135, 84);
+    font-size: 13px;
+}

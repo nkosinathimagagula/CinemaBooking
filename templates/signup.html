@@ -14,7 +14,15 @@
             <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="Failed to load image">
             <h1>Signup</h1>
 
-            <form action="", method="post">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="{{ category }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form method="post">
                 <p>Firstname</p>
                 <input type="text" name="firstname" placeholder="Enter your firstname">
                 <p>Lastname</p>
@@ -24,13 +32,13 @@
                 <p>Password</p>
                 <input type="password" name="password">
                 <p>Confirm password</p>
-                <input type="password" name="password">
+                <input type="password" name="confirmPassword">
 
                 <br>
                 <br>
-                <a href="/login">
-                    <button class="signup" type="submit">Signup</button>
-                </a>
+                <!-- <a href="/"> -->
+                    <button type="submit" class="signup">Signup</button>
+                <!-- </a> -->
                 
             </form>
         </div>
