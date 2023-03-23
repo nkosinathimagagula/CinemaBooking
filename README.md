@@ -7,10 +7,16 @@ Online Cinema Booking web application using Flask framework
 python3 -m venv venv
 source venv/bin/activate
 
-## installing Flask and setting the requiements
+## Installing Flask, SQLAlchemy and setting the requiements
 pip install Flask
-pip install flask-sqlalchemy (using SQLAlchemy for database)
+pip install flask_sqlalchemy (using SQLAlchemy for database)
 pip freeze > requirements.txt
 
 ### Installing all the packages for this project
 pip install -r requirements.txt
+
+### Database creation 
+#### application context (from the terminal)
+app.app_context().push()
+then
+db.create_all()

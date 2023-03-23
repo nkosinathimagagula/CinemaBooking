@@ -25,9 +25,7 @@ def signup():
             return redirect('/login')
         else:
             flash('passwords don\'t match!', 'error')
-        
-       
-            
+              
 
     return render_template('signup.html')
 
