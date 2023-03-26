@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request, flash, redirect
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'viuyrted768cvvbyrc8674rtedct'
+from flask import render_template, request, flash, redirect
+from database import app, db, User
 
 # landing page
 @app.route('/')
@@ -21,8 +19,28 @@ def signup():
         if (firstname == '' or lastname == '' or email == '' or password == '' or confirmPassword == '' ):
             flash('Please fill in all the blanks!', 'error')
         elif password == confirmPassword:
-            flash('Successfully signed up! You can now login.', 'message')
-            return redirect('/login')
+            
+            # might have to change this since it handles any error by flashing this message 
+            # might want to try this
+            #
+            # user = User.query.filter_by(email=email).first()
+            # if user == None
+            #   add user to the table
+            # else
+            #   flash the message
+            #
+            # then except will come after this ...
+
+            try:
+                user = User(firstname, lastname, email, password)
+
+                db.session.add(user)
+                db.session.commit()
+
+                flash('Successfully signed up! You can now login.', 'message')
+                return redirect('/login')
+            except:
+                flash('Email already exist. Please try to login!', 'error')
         else:
             flash('passwords don\'t match!', 'error')
               

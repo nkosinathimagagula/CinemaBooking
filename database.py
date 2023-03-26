@@ -1,5 +1,8 @@
-from app import app
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'viuyrted768cvvbyrc8674rtedct'
 
 # database creation and connection
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cineverse_database.db'
