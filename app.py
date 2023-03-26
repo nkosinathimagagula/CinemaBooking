@@ -19,7 +19,7 @@ def signup():
         if (firstname == '' or lastname == '' or email == '' or password == '' or confirmPassword == '' ):
             flash('Please fill in all the blanks!', 'error')
         elif password == confirmPassword:
-            
+
             # might have to change this since it handles any error by flashing this message 
             # might want to try this
             #
@@ -49,7 +49,29 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        try:
+            user = User.query.filter_by(email=email).first()
+
+            if user != None:
+                if user.password == password:
+                    return redirect('/home/')
+                else:
+                    flash('Wrong password. Please try again!', 'error')
+            else:
+                flash('User does not exist. Please signup first!', 'error')
+        except:
+            return "ERROR QUERYING THE DATABASE!"
+
     return render_template('login.html')
+
+@app.route('/home/')
+def home():
+    return "Homepage"
+
 
 if __name__ == "__main__":
     app.run(debug=True)
