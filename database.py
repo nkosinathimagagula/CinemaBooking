@@ -24,3 +24,15 @@ class User(db.Model):
         self.lastname = lastname
         self.email = email
         self.password = password
+
+class Movie(db.Model):
+    # COLUMNS
+    movie_id = db.Column(db.Integer, nullable=False, primary_key=True, unique=True)
+    name = db.Column(db.Text, nullable=False)
+    category = db.Column(db.Text, nullable=False)
+    image = db.Column(db.Text, nullable=False)
+
+    def __init__(self, name, category, image):
+        self.name = name
+        self.category = category
+        self.image = image

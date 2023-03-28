@@ -1,5 +1,24 @@
-from flask import render_template, request, flash, redirect
-from database import app, db, User
+from flask import render_template, flash, redirect, Response , request
+from database import app, db, User, Movie
+from utils import decode_image
+
+
+@app.route('/admin/upload/', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        name = request.form['movie_name']
+        category = request.form['category']
+        image = request.files['image']
+
+        movie = Movie(name, category, image.read())
+
+        db.session.add(movie)
+        db.session.commit()
+
+    movies = Movie.query.all()
+    images = map(decode_image, movies)
+    
+    return render_template('admin/add.html', images=list(images))
 
 # landing page
 @app.route('/')
