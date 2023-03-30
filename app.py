@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, Response , request
 from database import app, db, User, Movie
 from utils import decode_image
 
-
+# Admin routes ------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/admin/upload/', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
@@ -20,6 +20,9 @@ def upload():
     
     return render_template('admin/add.html', images=list(images))
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# User routes -------------------------------------------------------------------------------------------------------------------------------------------------
 # landing page
 @app.route('/')
 def landing():
@@ -89,7 +92,9 @@ def login():
 
 @app.route('/home/')
 def home():
-    return "Homepage"
+    movies = Movie.query.all()
+    images = map(decode_image, movies)
+    return render_template('home.html', movies=list(images))
 
 
 if __name__ == "__main__":

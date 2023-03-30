@@ -16,11 +16,7 @@
         </form>
     </div>
     <div>
-        <!-- {%  for img in images %}
-            <img src="{{img.image}}" alt="">
-        {% endfor %} -->
-        <!-- <img src="data:;base64,{{ image }}" alt="hello"> -->
-        <!-- data:;base64,{{ image }} --> 
+        
         {% for image in images %}
             <img src="data:;base64,{{ image }}" alt="">
         {% endfor %}

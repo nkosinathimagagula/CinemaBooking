@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="top">
+        <a href="/home/">
+            <img src="{{ url_for('static', filename='img/landing.jpg') }}" alt="Failed to load image">
+        </a>
+
+        <ul class="nav">
+            <li>
+                <a href="/home/">
+                    <Button>Home</Button>
+                </a>
+            </li>
+            <li>
+                <a href="/home/vr/">
+                    <Button>VR</Button>
+                </a>
+            </li>
+            <li>
+                <a href="/home/about">
+                    <Button>About</Button>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+         <h3>Action</h3>
+
+         <div class="images">
+            {% for movie in movies %}
+                <img src="data:;base64,{{ movie }}" alt="Failed to load image">
+
+            {% endfor %}
+         </div>
+
+         
+    </div>
+{% endblock %}
