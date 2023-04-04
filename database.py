@@ -31,8 +31,19 @@ class Movie(db.Model):
     name = db.Column(db.Text, nullable=False)
     category = db.Column(db.Text, nullable=False)
     image = db.Column(db.Text, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    date_time = db.Column(db.DateTime, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    cinema_room = db.Column(db.Integer, nullable=False)
+    available_seats = db.Column(db.Integer, nullable=False, default=32)
+    sold_seats = db.Column(db.Integer, nullable=False, default=0)
 
-    def __init__(self, name, category, image):
+
+    def __init__(self, name, category, image, description, date_time, price, cinema_room):
         self.name = name
         self.category = category
         self.image = image
+        self.description = description
+        self.date_time = date_time
+        self.price = price
+        self.cinema_room = cinema_room

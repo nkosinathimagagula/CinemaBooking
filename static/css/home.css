@@ -48,3 +48,39 @@
     height: 200px;
     margin-left: 10px;
 }
+.images img:hover {
+    box-shadow: 0 0 8px 2px #aaaaaa;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+.details #text {
+    display: inline-block;
+    position: relative;
+    padding-left: 10px;
+    height: 50px;
+    width: 140px;
+}
+.details #text::after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    transform: scaleX(0);
+    height: 1.5px;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition:  transform 0.3s ease-in-out;
+}
+.details #text:hover::after {
+    cursor: pointer;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.details #text2 {
+    padding-left: 10px;
+    width: 140px;
+    color: #999999;
+}

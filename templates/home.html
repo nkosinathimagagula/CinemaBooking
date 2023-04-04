@@ -10,10 +10,10 @@
             <img src="{{ url_for('static', filename='img/landing.jpg') }}" alt="Failed to load image">
         </a>
 
-        <ul class="nav">
+        <!-- <ul class="nav">
             <li>
                 <a href="/home/">
-                    <Button>Home</Button>
+                    <Button>Home</Button> 
                 </a>
             </li>
             <li>
@@ -26,18 +26,36 @@
                     <Button>About</Button>
                 </a>
             </li>
-        </ul>
+        </ul> -->
     </div>
     <div class="content">
-         <h3>Action</h3>
+        {% for category in movies %}
+            <h2>{{ category }}</h2>
+            <div class="images">
+                {% for (movie, image) in zip(movies[category][0], movies[category][1]) %}
+                    <div class="details">
+                        <a href="#">
+                            <img src="data:;base64,{{ image }}" alt="Failed to load image">
 
-         <div class="images">
-            {% for movie in movies %}
-                <img src="data:;base64,{{ movie }}" alt="Failed to load image">
-
-            {% endfor %}
-         </div>
-
+                            <p id="text">
+                                {{ movie.name }}
+                                <br> 
+                            </p>
+                        </a>
+                        
+                        <p id="text2">
+                            Price: R{{ movie.price }}.00
+                            <br>
+                            Seats sold: {{ movie.sold_seats }}
+                            <br>
+                            Seats available: {{ movie.available_seats }}
+                            <br>
+                            Time: {{ datetime.strftime(movie.date_time, "%Hh%M") }}
+                        </p>
+                    </div> 
+                {% endfor %}
+            </div>
+        {% endfor %}
          
     </div>
 {% endblock %}
