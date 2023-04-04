@@ -112,26 +112,31 @@ def signup():
 
     return render_template('signup.html')
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
 
-        try:
-            user = User.query.filter_by(email=email).first()
+        if email == '' or password == '':
+            flash('Please fill in all the blanks!', 'error')
+        else:
+            try:
+                user = User.query.filter_by(email=email).first()
 
-            if user != None:
-                if user.password == password:
-                    return redirect('/home/')
+                if user != None:
+                    if user.password == password:
+                        return redirect('/home/')
+                    else:
+                        flash('Wrong password. Please try again!', 'error')
                 else:
-                    flash('Wrong password. Please try again!', 'error')
-            else:
-                flash('User does not exist. Please signup first!', 'error')
-        except:
-            return "ERROR QUERYING THE DATABASE!"
+                    flash('User does not exist. Please signup first!', 'error')
+            except:
+                return "ERROR QUERYING THE DATABASE!"
 
     return render_template('login.html')
+
 
 @app.route('/home/')
 def home():
@@ -146,11 +151,12 @@ def home():
         # category  :   [ movies with details , decoded images for that category ]
         movies[category] = [locals()[category.lower()], locals()[category.lower() + '_images']]
 
-
-    # movies = Movie.query.all()
-    # images = map(decode_image, movies)
-
     return render_template('home.html', movies=movies, zip=zip, datetime=datetime)
+
+
+@app.route('/home/movie/<string:movie_name>/details')
+def details(movie_name):
+    return render_template('details.html');
 
 if __name__ == "__main__":
     app.run(debug=True)
