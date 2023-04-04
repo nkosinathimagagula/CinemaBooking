@@ -1,0 +1,7 @@
+.top {
+    margin: 0px;
+    display: flex;
+}
+.top img {
+    height: 100px;
+}
