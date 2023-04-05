@@ -1,7 +1,8 @@
-from flask import render_template, flash, redirect , request
+from flask import render_template, flash, redirect, request
 from database import app, db, User, Movie
-from utils import decode_image
+from utils import decode_image, remove_special_chars
 from datetime import datetime
+
 
 # Admin routes ------------------------------------------------------------------------------------------------------------------------------------------------
 @app.route('/admin/upload/', methods=['GET', 'POST'])
@@ -23,7 +24,7 @@ def upload():
         movie_added = Movie.query.filter_by(name=name).first()
 
         # Dynamically creating a class for cinema room seats for each movie added
-        # !!! [ for some reason i got indentation error, thus the weird format in this string below ]
+        # !!! [ for some reason I got indentation error, thus the weird format in this string below ]
         class_name = 'Seats' + str(movie_added.cinema_room) + str(movie_added.movie_id)
         class_body = """id = db.Column(db.Integer, nullable=False, primary_key=True, unique=True)
 c1 = db.Column(db.Integer, nullable=False)
@@ -46,7 +47,8 @@ def __init__(self, c1, c2, c3, c4, c5, c6, c7, c8):
     self.c8 = c8"""
         class_dictionary = {}
         exec(class_body, globals(), class_dictionary)
-        globals()['Seats' + str(movie_added.cinema_room) + str(movie_added.movie_id)] = type(class_name, (db.Model,), class_dictionary)
+        globals()['Seats' + str(movie_added.cinema_room) + str(movie_added.movie_id)] = type(class_name, (db.Model,),
+                                                                                             class_dictionary)
 
         db.create_all()
 
@@ -55,15 +57,14 @@ def __init__(self, c1, c2, c3, c4, c5, c6, c7, c8):
             row = globals()['Seats' + str(movie_added.cinema_room) + str(movie_added.movie_id)](0, 0, 0, 0, 0, 0, 0, 0)
             db.session.add(row)
             db.session.commit()
-        
-
 
     movies = Movie.query.all()
     images = map(decode_image, movies)
-    
+
     return render_template('admin/add.html', images=list(images))
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # User routes -------------------------------------------------------------------------------------------------------------------------------------------------
 # landing page
@@ -80,8 +81,8 @@ def signup():
         email = request.form['email']
         password = request.form['password']
         confirmPassword = request.form['confirmPassword']
-         
-        if (firstname == '' or lastname == '' or email == '' or password == '' or confirmPassword == '' ):
+
+        if firstname == '' or lastname == '' or email == '' or password == '' or confirmPassword == '':
             flash('Please fill in all the blanks!', 'error')
         elif password == confirmPassword:
 
@@ -108,7 +109,6 @@ def signup():
                 flash('Email already exist. Please try to login!', 'error')
         else:
             flash('passwords don\'t match!', 'error')
-              
 
     return render_template('signup.html')
 
@@ -140,7 +140,8 @@ def login():
 
 @app.route('/home/')
 def home():
-    categories = [ 'Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'History', 'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller']
+    categories = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'History',
+                  'Horror', 'Musical', 'Mystery', 'Romance', 'Sci-Fi', 'Thriller']
     movies = {}
 
     for category in categories:
@@ -151,12 +152,14 @@ def home():
         # category  :   [ movies with details , decoded images for that category ]
         movies[category] = [locals()[category.lower()], locals()[category.lower() + '_images']]
 
-    return render_template('home.html', movies=movies, zip=zip, datetime=datetime)
+
+    return render_template('home.html', movies=movies, zip=zip, datetime=datetime, format_str=remove_special_chars)
 
 
-@app.route('/home/movie/<string:movie_name>/details')
-def details(movie_name):
+@app.route('/home/movie/<string:movie_name>-<string:cinema_room><movie_id>/details')
+def details(movie_name, cinema_room, movie_id):
     return render_template('details.html');
+
 
 if __name__ == "__main__":
     app.run(debug=True)
