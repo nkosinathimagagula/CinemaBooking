@@ -9,5 +9,60 @@
         <a href="/home/">
             <img src="{{ url_for('static', filename='img/landing.jpg') }}" alt="Failed to load image">
         </a>
+    </div> 
+
+    <div class="movie_name">
+        <h1>{{ movie.name }}</h1>
+    </div>
+    <div class="content">
+        <div class="image">
+            <img src="data:;base64,{{ image }}" alt="Failed to load image">
+
+            <br>
+
+            <p>
+                Cinema {{ movie.cinema_room }}
+            </p>
+        </div>
+
+        <div class="details">
+            <p>
+                Date
+                <br>
+                {{ datetime.strftime(movie.date_time, "%Y-%m-%d") }}
+            </p>
+            <p>  
+                Time
+                <br>
+                {{ datetime.strftime(movie.date_time, "%Hh%M") }}
+            </p>
+            <p>
+                Category
+                <br>
+                {{ movie.category }}
+            </p>
+            <p>
+                Description
+                <br>
+                {{ movie.description }}
+            </p>
+            <p>
+                Available seats
+                <br>
+                {{ movie.available_seats }}
+            </p>
+            <p>
+                Sold seats
+                <br>
+                {{ movie.sold_seats }}
+            </p>
+
+        </div>
+
+        <div>
+            <a href="#">
+                <button>Continue</button>
+            </a>
+        </div>
     </div>
 {% endblock %}

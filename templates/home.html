@@ -34,7 +34,7 @@
             <div class="images">
                 {% for (movie, image) in zip(movies[category][0], movies[category][1]) %}
                     <div class="details">
-                        <a href="/home/movie/{{ format_str(movie.name.lower()) }}-{{ movie.cinema_room }}{{ movie.movie_id }}/details">
+                        <a href="/home/movie/{{ format_str(movie.name.lower()) }}-{{ movie.movie_id }}/details">
                             <img src="data:;base64,{{ image }}" alt="Failed to load image">
 
                             <p id="text">

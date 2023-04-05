@@ -156,9 +156,11 @@ def home():
     return render_template('home.html', movies=movies, zip=zip, datetime=datetime, format_str=remove_special_chars)
 
 
-@app.route('/home/movie/<string:movie_name>-<string:cinema_room><movie_id>/details')
-def details(movie_name, cinema_room, movie_id):
-    return render_template('details.html');
+@app.route('/home/movie/<string:movie_name>-<int:movie_id>/details')
+def details(movie_name, movie_id):
+    movie = Movie.query.filter_by(movie_id=movie_id).first()
+    image = decode_image(movie)
+    return render_template('details.html', movie=movie, image=image, datetime=datetime);
 
 
 if __name__ == "__main__":
