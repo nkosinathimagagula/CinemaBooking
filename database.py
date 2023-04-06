@@ -34,7 +34,7 @@ class Movie(db.Model):
     description = db.Column(db.Text, nullable=False)
     date_time = db.Column(db.DateTime, nullable=False)
     price = db.Column(db.Integer, nullable=False)
-    cinema_room = db.Column(db.Integer, nullable=False)
+    cinema_room = db.Column(db.Text, nullable=False)
     available_seats = db.Column(db.Integer, nullable=False, default=32)
     sold_seats = db.Column(db.Integer, nullable=False, default=0)
 
