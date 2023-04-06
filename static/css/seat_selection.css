@@ -1,0 +1,36 @@
+.top {
+    margin: 0px;
+    display: flex;
+}
+.top img {
+    height: 100px;
+}
+
+.container{
+    perspective: 1000px;
+    /* margin-bottom: 30px; */
+}
+.screen{
+    background-color: #ffffff;
+    margin: auto;
+    height: 30vh;
+    width: 50%;
+    transform: rotateX(-40deg);
+    box-shadow: 0 5px 10px rgba(255, 255, 255, 0.7);
+} 
+.row{
+    display: flex;
+    justify-content: center;
+    margin-top: 1vh;
+  }
+.row .seat{
+    background-color: #444444;
+    height: 3vh;
+    width: 2vw;
+    margin: 1vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 10px;
+    text-align: center;
+    text-align-last: auto;
+}

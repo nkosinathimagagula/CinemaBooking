@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/seat_selection.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="top">
+        <a href="/home/">
+            <img src="{{ url_for('static', filename='img/landing.jpg') }}" alt="Failed to load image">
+        </a>
+    </div> 
+
+    <div class="container">
+
+        <div class="screen"></div>
+    
+        <div class="row">
+          <div class="seat">A1</div>
+          <div class="seat">A2</div>
+          <div class="seat">A3</div>
+          <div class="seat">A4</div>
+          <div class="seat">A5</div>
+          <div class="seat">A6</div>
+          <div class="seat">A7</div>
+          <div class="seat">A8</div>
+        </div>
+    
+        <div class="row">
+          <div class="seat">B1</div>
+          <div class="seat">B2</div>
+          <div class="seat">B3</div>
+          <div class="seat">B4</div>
+          <div class="seat">B5</div>
+          <div class="seat">B6</div>
+          <div class="seat">B7</div>
+          <div class="seat">B8</div>
+        </div>
+    
+        <div class="row">
+          <div class="seat">C1</div>
+          <div class="seat">C2</div>
+          <div class="seat">C3</div>
+          <div class="seat">C4</div>
+          <div class="seat">C5</div>
+          <div class="seat">C6</div>
+          <div class="seat">C7</div>
+          <div class="seat">C8</div>
+        </div>
+    
+        <div class="row">
+          <div class="seat">D1</div>
+          <div class="seat">D2</div>
+          <div class="seat">D3</div>
+          <div class="seat">D4</div>
+          <div class="seat">D5</div>
+          <div class="seat">D6</div>
+          <div class="seat">D7</div>
+          <div class="seat">D8</div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

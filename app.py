@@ -163,5 +163,10 @@ def details(movie_name, movie_id):
     return render_template('details.html', movie=movie, image=image, datetime=datetime, format_str=remove_special_chars);
 
 
+
+@app.route('/home/movie/<string:movie_name>-<int:movie_id>/booking/seat-selection-<string:cinema_room>/')
+def seat_selection(movie_name, movie_id, cinema_room):
+    return render_template('seat_selection.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
