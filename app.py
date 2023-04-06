@@ -160,7 +160,7 @@ def home():
 def details(movie_name, movie_id):
     movie = Movie.query.filter_by(movie_id=movie_id).first()
     image = decode_image(movie)
-    return render_template('details.html', movie=movie, image=image, datetime=datetime);
+    return render_template('details.html', movie=movie, image=image, datetime=datetime, format_str=remove_special_chars);
 
 
 if __name__ == "__main__":

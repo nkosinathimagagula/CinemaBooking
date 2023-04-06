@@ -21,48 +21,45 @@
             <br>
 
             <p>
-                Cinema {{ movie.cinema_room }}
+                <h4>Cinema {{ movie.cinema_room }}</h4>
             </p>
         </div>
 
         <div class="details">
-            <p>
-                Date
-                <br>
+            <p class="hd">Date</p>
+            <p class="text">
                 {{ datetime.strftime(movie.date_time, "%Y-%m-%d") }}
             </p>
-            <p>  
-                Time
-                <br>
+            <p class="hd">Time</p>
+            <p class="text">
                 {{ datetime.strftime(movie.date_time, "%Hh%M") }}
             </p>
-            <p>
-                Category
-                <br>
+            <p class="hd">Category</p>
+            <p class="text">
                 {{ movie.category }}
             </p>
-            <p>
-                Description
-                <br>
+            <p class="hd">Decsription</p>
+            <p class="text">
                 {{ movie.description }}
             </p>
-            <p>
-                Available seats
-                <br>
+            <p class="hd">Available seats</p>
+            <p class="text">
                 {{ movie.available_seats }}
             </p>
-            <p>
-                Sold seats
-                <br>
+            <p class="hd">Sold seats</p>
+            <p class="text">
                 {{ movie.sold_seats }}
+            </p>
+            <p class="hd">Price</p>
+            <p class="text">                
+                R{{ movie.price }}.00
             </p>
 
         </div>
-
-        <div>
-            <a href="#">
-                <button>Continue</button>
-            </a>
-        </div>
     </div>
+
+    <a href="/home/movie/{{ format_str(movie.name.lower()) }}-{{ movie.movie_id }}/booking/seat-selection">
+        <p class="button">Continue</p>
+    </a>
+    
 {% endblock %}

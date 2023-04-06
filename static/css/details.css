@@ -5,3 +5,65 @@
 .top img {
     height: 100px;
 }
+
+.movie_name {
+    margin: 0 20px;
+}
+.content {
+    display: flex;
+}
+
+.content .image img {
+    margin: 0px 20px;
+    width: 20vw;
+    border-radius: 5px;
+    border: 4px solid #333333;
+}
+.content h4 {
+    margin: auto 20px;
+} 
+
+.details {
+    margin: 0 15vw;
+}
+.details p {
+    margin: 0;
+}
+.details .hd {
+    font-size: large;
+    font-weight: bold;
+    padding-top: 0.5vw;
+}
+.details .text {
+    padding-top: 0.5vw;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.button {
+    display: inline-block;
+    position: relative;
+    font-size: 20px;
+    padding-left: 90vw;
+    height: 2vw;
+    width: 5vw;
+}
+.button::after {
+    content: '';
+    position: absolute;
+    width: 5vw;
+    padding-left: 5px;
+    transform: scaleX(0);
+    height: 1.5px;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition:  transform 0.3s ease-in-out;
+}
+.button:hover::after {
+    cursor: pointer;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
