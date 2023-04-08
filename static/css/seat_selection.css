@@ -8,7 +8,6 @@
 
 .container{
     perspective: 1000px;
-    /* margin-bottom: 30px; */
 }
 .screen{
     background-color: #ffffff;
@@ -23,14 +22,63 @@
     justify-content: center;
     margin-top: 1vh;
   }
-.row .seat{
+.row .available_seat{
     background-color: #444444;
-    height: 3vh;
-    width: 2vw;
+    height: 3.5vh;
+    width: 3vw;
     margin: 1vw;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     font-size: 10px;
     text-align: center;
-    text-align-last: auto;
+}
+.row .selected_seat {
+    background-color: #2a57b7;
+    height: 3.5vh;
+    width: 3vw;
+    margin: 1vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 10px;
+    text-align: center;
+}
+.row .occupied_seat {
+    background-color: #a52b2b;
+    height: 3.5vh;
+    width: 3vw;
+    margin: 1vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 10px;
+    text-align: center;
+}
+.available_seat:hover {
+    background-color: #444444;
+    height: 3.8vh;
+    width: 3.3vw;
+    margin: 0.9vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 10px;
+    text-align: center;
+}
+.selected_seat:hover {
+    background-color: #2a57b7;
+    height: 3.8vh;
+    width: 3.3vw;
+    margin: 0.9vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 10px;
+    text-align: center;
 }

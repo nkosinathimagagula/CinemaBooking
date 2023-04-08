@@ -61,7 +61,7 @@ a {
     display: inline-block;
     position: relative;
     padding-left: 10px;
-    height: 50px;
+    max-height: 50px;
     width: 140px;
 }
 .details #text::after {
