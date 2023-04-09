@@ -12,54 +12,79 @@
     </div> 
 
     <div class="container">
+        <div class="key_legend">
+          <li>
+            <div class="available_seat"></div>
+            <small>Available</small>
+          </li>
+          <li>
+            <div class="selected_seat"></div>
+            <small>Selected</small>
+          </li>
+          <li>
+            <div class="occupied_seat"></div>
+            <small>Occupied</small>
+          </li>
+        </div>
 
         <div class="screen"></div>
     
+        
         <div class="row">
-          <div class="available_seat" data-value="A1">A1</div>
-          <div class="available_seat" data-value="A2">A2</div>
-          <div class="available_seat" data-value="A3">A3</div>
-          <div class="available_seat" data-value="A4">A4</div>
-          <div class="available_seat" data-value="A5">A5</div>
-          <div class="available_seat" data-value="A6">A6</div>
-          <div class="available_seat" data-value="A7">A7</div>
-          <div class="available_seat" data-value="A8">A8</div>
+            {% for index, seat in enumerate(seats[0]) %}
+                {% if seat == 0 %}
+                  <div class="available_seat" data-value="A{{ index + 1 }}">A{{ index + 1 }}</div>
+                {% else %}
+                  <div class="occupied_seat" data-value="A{{ index + 1 }}">A{{ index + 1 }}</div>
+                {% endif %}
+            {% endfor %}
         </div>
     
         <div class="row">
-          <div class="available_seat" data-value="B1">B1</div>
-          <div class="available_seat" data-value="B2">B2</div>
-          <div class="available_seat" data-value="B3">B3</div>
-          <div class="available_seat" data-value="B4">B4</div>
-          <div class="available_seat" data-value="B5">B5</div>
-          <div class="available_seat" data-value="B6">B6</div>
-          <div class="available_seat" data-value="B7">B7</div>
-          <div class="available_seat" data-value="B8">B8</div>
+            {% for index, seat in enumerate(seats[1]) %}
+                {% if seat == 0 %}
+                  <div class="available_seat" data-value="B{{ index + 1 }}">B{{ index + 1 }}</div>
+                {% else %}
+                  <div class="occupied_seat" data-value="B{{ index + 1 }}">B{{ index + 1 }}</div>
+                {% endif %}
+            {% endfor %}
         </div>
     
         <div class="row">
-          <div class="available_seat" data-value="C1">C1</div>
-          <div class="available_seat" data-value="C2">C2</div>
-          <div class="available_seat" data-value="C3">C3</div>
-          <div class="available_seat" data-value="C4">C4</div>
-          <div class="available_seat" data-value="C5">C5</div>
-          <div class="available_seat" data-value="C6">C6</div>
-          <div class="available_seat" data-value="C7">C7</div>
-          <div class="available_seat" data-value="C8">C8</div>
+            {% for index, seat in enumerate(seats[2]) %}
+                {% if seat == 0 %}
+                  <div class="available_seat" data-value="C{{ index + 1 }}">C{{ index + 1 }}</div>
+                {% else %}
+                  <div class="occupied_seat" data-value="C{{ index + 1 }}">C{{ index + 1 }}</div>
+                {% endif %}
+            {% endfor %}
         </div>
     
         <div class="row">
-          <div class="occupied_seat" data-value="D1">D1</div>
-          <div class="available_seat" data-value="D2">D2</div>
-          <div class="available_seat" data-value="D3">D3</div>
-          <div class="available_seat" data-value="D4">D4</div>
-          <div class="available_seat" data-value="D5">D5</div>
-          <div class="available_seat" data-value="D6">D6</div>
-          <div class="available_seat" data-value="D7">D7</div>
-          <div class="available_seat" data-value="D8">D8</div>
+          {% for index, seat in enumerate(seats[3]) %}
+                {% if seat == 0 %}
+                  <div class="available_seat" data-value="D{{ index + 1 }}">D{{ index + 1 }}</div>
+                {% else %}
+                  <div class="occupied_seat" data-value="D{{ index + 1 }}">D{{ index + 1 }}</div>
+                {% endif %}
+            {% endfor %}
         </div>
+      </div>
+
+      <div class="info">
+        <small>You have selected <span id="num_of_seats_selected">0</span> seats. Your total is R<span id="total_price">0</span>.00</small>
+        <br>
+        <br>
+        Seats selected: <span id="seats_selected"></span>
       </div>
     </div>
 
+    
+
+    <a href="#">
+      <p class="button">Continue</p>
+    </a>
+
+    <div id="movie_price" data-value="{{ movie.price }}"></div>
     <script src="{{ url_for('static', filename='js/seat_selection.js') }}"></script>
 {% endblock %}

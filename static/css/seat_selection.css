@@ -9,11 +9,61 @@
 .container{
     perspective: 1000px;
 }
+.key_legend {
+    margin: 0 auto;
+    color: #777777;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    width: 20vw;
+
+}
+.key_legend li {
+    display: flex;
+    align-items: center;
+}
+.key_legend li .available_seat{
+    background-color: #444444;
+    height: 1.5vh;
+    width: 1vw;
+    margin: 1vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 10px;
+    text-align: center;
+}
+.key_legend li .selected_seat {
+    background-color: #2a57b7;
+    height: 1.5vh;
+    width: 1vw;
+    margin: 1vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 10px;
+    text-align: center;
+}
+.key_legend li .occupied_seat {
+    background-color: #a52b2b;
+    opacity: 60%;
+    height: 1.5vh;
+    width: 1vw;
+    margin: 1vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 10px;
+    text-align: center;
+}
 .screen{
     background-color: #ffffff;
     margin: auto;
     height: 30vh;
-    width: 50%;
+    width: 45%;
     transform: rotateX(-40deg);
     box-shadow: 0 5px 10px rgba(255, 255, 255, 0.7);
 } 
@@ -24,8 +74,8 @@
   }
 .row .available_seat{
     background-color: #444444;
-    height: 3.5vh;
-    width: 3vw;
+    height: 3vh;
+    width: 2vw;
     margin: 1vw;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -36,8 +86,8 @@
 }
 .row .selected_seat {
     background-color: #2a57b7;
-    height: 3.5vh;
-    width: 3vw;
+    height: 3vh;
+    width: 2vw;
     margin: 1vw;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -48,8 +98,9 @@
 }
 .row .occupied_seat {
     background-color: #a52b2b;
-    height: 3.5vh;
-    width: 3vw;
+    opacity: 60%;
+    height: 3vh;
+    width: 2vw;
     margin: 1vw;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -60,8 +111,8 @@
 }
 .available_seat:hover {
     background-color: #444444;
-    height: 3.8vh;
-    width: 3.3vw;
+    height: 3.2vh;
+    width: 2.2vw;
     margin: 0.9vw;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -72,8 +123,8 @@
 }
 .selected_seat:hover {
     background-color: #2a57b7;
-    height: 3.8vh;
-    width: 3.3vw;
+    height: 3.2vh;
+    width: 2.2vw;
     margin: 0.9vw;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -81,4 +132,40 @@
     border-bottom-right-radius: 5px;
     font-size: 10px;
     text-align: center;
+}
+
+.info {
+    text-align: center;
+}
+.info small {
+    color: #777777;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+.button {
+    display: inline-block;
+    position: relative;
+    font-size: 20px;
+    padding-left: 90vw;
+    height: 2vw;
+    width: 5vw;
+}
+.button::after {
+    content: '';
+    position: absolute;
+    width: 5vw;
+    padding-left: 5px;
+    transform: scaleX(0);
+    height: 1.5px;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition:  transform 0.3s ease-in-out;
+}
+.button:hover::after {
+    cursor: pointer;
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
