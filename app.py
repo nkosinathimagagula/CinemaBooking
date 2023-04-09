@@ -2,6 +2,7 @@ from flask import render_template, flash, redirect, request
 from database import app, db, User, Movie
 from utils import decode_image, remove_special_chars
 from datetime import datetime
+from sqlalchemy import text
 
 
 # Admin routes ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -47,10 +48,11 @@ def __init__(self, c1, c2, c3, c4, c5, c6, c7, c8):
     self.c8 = c8"""
         class_dictionary = {}
         exec(class_body, globals(), class_dictionary)
-        globals()['Seats' + str(movie_added.cinema_room) + str(movie_added.movie_id)] = type(class_name, (db.Model,),
-                                                                                             class_dictionary)
+        
+        globals()['Seats' + str(movie_added.cinema_room) + str(movie_added.movie_id)] = type(class_name, (db.Model,), class_dictionary)
 
         db.create_all()
+
 
         # add 4 rows for seats
         for _ in range(4):
@@ -166,7 +168,21 @@ def details(movie_name, movie_id):
 
 @app.route('/home/movie/<string:movie_name>-<int:movie_id>/booking/seat-selection-<string:cinema_room>/')
 def seat_selection(movie_name, movie_id, cinema_room):
-    return render_template('seat_selection.html')
+    movie = Movie.query.filter_by(movie_id=movie_id).first()
+
+    with db.engine.connect() as connection:
+        results = connection.execute(text('SELECT * FROM seats' + str(cinema_room) + str(movie_id)))
+    
+    seats = []
+    # remove ids
+    for tuple in results:
+        temp = []
+        for index in range(len(tuple) - 1):
+            temp.append(tuple[index + 1])
+        seats.append(temp)
+    
+
+    return render_template('seat_selection.html', movie=movie, seats=seats, enumerate=enumerate)
 
 if __name__ == "__main__":
     app.run(debug=True)
