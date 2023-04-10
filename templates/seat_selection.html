@@ -74,16 +74,16 @@
       <div class="info">
         <small>You have selected <span id="num_of_seats_selected">0</span> seats. Your total is R<span id="total_price">0</span>.00</small>
         <br>
-        <br>
-        Seats selected: <span id="seats_selected"></span>
+        <form method="post">
+          <!-- Seats selected: <input type="text" id="seats_selected" name="seats_selected"> -->
+          <textarea name="seats_selected" id="seats_selected" rows="1"></textarea>
+          <br>
+          <br>
+          <button type="submit">Continue</button>
+        </form>
       </div>
     </div>
 
-    
-
-    <a href="#">
-      <p class="button">Continue</p>
-    </a>
 
     <div id="movie_price" data-value="{{ movie.price }}"></div>
     <script src="{{ url_for('static', filename='js/seat_selection.js') }}"></script>

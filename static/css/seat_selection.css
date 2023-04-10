@@ -110,6 +110,7 @@
     text-align: center;
 }
 .available_seat:hover {
+    cursor: pointer;
     background-color: #444444;
     height: 3.2vh;
     width: 2.2vw;
@@ -122,6 +123,7 @@
     text-align: center;
 }
 .selected_seat:hover {
+    cursor: pointer;
     background-color: #2a57b7;
     height: 3.2vh;
     width: 2.2vw;
@@ -136,35 +138,51 @@
 
 .info {
     text-align: center;
+    color: #777777;
 }
 .info small {
     color: #777777;
+}
+.info textarea {
+    margin: 1px auto;
+    font-size: large;
+}
+.info button {
+    display: inline-block;
+    position: relative;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    font-size: medium;
+}
+.info button:hover {
+    cursor: pointer;
+}
+#seats_selected {
+    color: #777777;
+    background: transparent;
+    width: 60vh;
+    border: none;
+    resize: none;
+    overflow: hidden;
 }
 
 a {
     text-decoration: none;
     color: #ffffff;
 }
-.button {
-    display: inline-block;
-    position: relative;
-    font-size: 20px;
-    padding-left: 90vw;
-    height: 2vw;
-    width: 5vw;
-}
-.button::after {
+button::after {
     content: '';
     position: absolute;
     width: 5vw;
-    padding-left: 5px;
     transform: scaleX(0);
     height: 1.5px;
     background-color: #ffffff;
     transform-origin: bottom right;
     transition:  transform 0.3s ease-in-out;
+    margin: 2.5vh -4.5vw;
 }
-.button:hover::after {
+button:hover::after {
     cursor: pointer;
     transform: scaleX(1);
     transform-origin: bottom left;

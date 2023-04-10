@@ -26,5 +26,5 @@ container.addEventListener('click', (event) => {
 function updateVars() {
     num_of_seats_selected.innerHTML = seats.length;
     total_price.innerHTML = ticket_price * seats.length;
-    seats_selected.innerHTML = seats;
+    seats_selected.value = seats
 }
