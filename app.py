@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, request
+from flask import render_template, flash, redirect, request, session
 from admin import admin_page
 from database import app, db, User, Movie
 from sqlalchemy import text
@@ -107,9 +107,9 @@ def details(movie_name, movie_id):
     return render_template('details.html', movie=movie, image=image, datetime=datetime, format_str=remove_special_chars);
 
 
-
-@app.route('/home/movie/<string:movie_name>-<int:movie_id>/booking/seat-selection-<string:cinema_room>/')
+@app.route('/home/movie/<string:movie_name>-<int:movie_id>/booking/seat-selection-<string:cinema_room>/', methods=['GET', 'POST'])
 def seat_selection(movie_name, movie_id, cinema_room):
+    
     movie = Movie.query.filter_by(movie_id=movie_id).first()
 
     with db.engine.connect() as connection:
@@ -122,8 +122,22 @@ def seat_selection(movie_name, movie_id, cinema_room):
         for index in range(len(tuple) - 1):
             temp.append(tuple[index + 1])
         seats.append(temp)
+        
+
+    if request.method == 'POST':
+        seats_selected = request.form['seats_selected']
+        
+        if seats_selected != '':
+            session['seats_selected'] = seats_selected
+            return redirect('/home/movie/' + movie_name + '-' + str(movie_id) + '/booking/seat-selection-' + cinema_room + '/checkout/')
     
     return render_template('seat_selection.html', movie=movie, seats=seats, enumerate=enumerate)
+
+
+@app.route('/home/movie/<string:movie_name>-<int:movie_id>/booking/seat-selection-<string:cinema_room>/checkout/', methods=['GET', 'POST'])
+def checkout(movie_name, movie_id, cinema_room):
+    return session['seats_selected']
+
 
 if __name__ == "__main__":
     app.run(debug=True)
