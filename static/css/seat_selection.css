@@ -33,6 +33,7 @@
     border-bottom-right-radius: 5px;
     font-size: 10px;
     text-align: center;
+    pointer-events: none;
 }
 .key_legend li .selected_seat {
     background-color: #2a57b7;
@@ -45,6 +46,7 @@
     border-bottom-right-radius: 5px;
     font-size: 10px;
     text-align: center;
+    pointer-events: none;
 }
 .key_legend li .occupied_seat {
     background-color: #a52b2b;
@@ -165,6 +167,8 @@
     border: none;
     resize: none;
     overflow: hidden;
+    outline: none;
+    pointer-events: none;
 }
 
 a {
@@ -174,13 +178,13 @@ a {
 button::after {
     content: '';
     position: absolute;
-    width: 5vw;
+    width: 4.3vw;
     transform: scaleX(0);
     height: 1.5px;
     background-color: #ffffff;
     transform-origin: bottom right;
     transition:  transform 0.3s ease-in-out;
-    margin: 2.5vh -4.5vw;
+    margin: 2.5vh -4.2vw;
 }
 button:hover::after {
     cursor: pointer;

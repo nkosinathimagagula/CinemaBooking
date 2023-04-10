@@ -53,13 +53,15 @@
             <p class="hd">Price</p>
             <p class="text">                
                 R{{ movie.price }}.00
-            </p>
+            </p> 
+        </div>
 
+        <div class="button">
+            <div class="btn">
+                <a href="/home/movie/{{ format_str(movie.name.lower()) }}-{{ movie.movie_id }}/booking/seat-selection-{{ movie.cinema_room }}/">
+                    <button type="button">Continue</button>
+                </a>
+            </div>
         </div>
     </div>
-
-    <a href="/home/movie/{{ format_str(movie.name.lower()) }}-{{ movie.movie_id }}/booking/seat-selection-{{ movie.cinema_room }}/">
-        <p class="button">Continue</p>
-    </a>
-    
 {% endblock %}
