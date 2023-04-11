@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'viuyrted768cvvbyrc8674rtedct'
@@ -46,4 +47,21 @@ class Movie(db.Model):
         self.description = description
         self.date_time = date_time
         self.price = price
+        self.cinema_room = cinema_room
+
+class Ticket(db.Model):
+    # COLUMNS
+    ticket_id = db.Column(db.Integer, nullable=False, primary_key=True, unique=True)
+    ticket_number = db.Column(db.Text, nullable=False, unique=True)
+    name = db.Column(db.Text, nullable=False)
+    lastname = db.Column(db.Text, nullable=False)
+    movie = db.Column(db.Text, nullable=False)
+    cinema_room = db.Column(db.Text, nullable=False)
+    date_time = db.Column(db.DateTime, nullable=False, default=datetime.now())
+
+    def __init__(self, ticket_number, name, lastname, movie, cinema_room):
+        self.ticket_number = ticket_number
+        self.name = name
+        self.lastname = lastname
+        self.movie = movie
         self.cinema_room = cinema_room
