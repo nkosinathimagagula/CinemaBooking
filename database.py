@@ -57,11 +57,13 @@ class Ticket(db.Model):
     lastname = db.Column(db.Text, nullable=False)
     movie = db.Column(db.Text, nullable=False)
     cinema_room = db.Column(db.Text, nullable=False)
+    seat = db.Column(db.Text, nullable=False, unique=True)
     date_time = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
-    def __init__(self, ticket_number, name, lastname, movie, cinema_room):
+    def __init__(self, ticket_number, name, lastname, movie, cinema_room, seat):
         self.ticket_number = ticket_number
         self.name = name
         self.lastname = lastname
         self.movie = movie
         self.cinema_room = cinema_room
+        self.seat = seat
