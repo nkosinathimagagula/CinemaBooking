@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/status.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="top">
+        <a href="/home/">
+            <img src="{{ url_for('static', filename='img/landing.jpg') }}" alt="Failed to load image">
+        </a>
+    </div>
+
+    <div class="msg">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{  message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="content">
+        {% for index, seat in enumerate(details) %}
+            <div class="ticket">
+                <img src="{{ url_for('static', filename='img/logo.jpg')}}" alt="Failed to load image">
+
+                <h2>{{ details[seat] }}</h2>
+                <h3>{{ movie.name }}</h3>
+
+                <p>Ticket number: {{ tickets[index].ticket_number }}</p>
+                <p>Cinema: {{ tickets[index].cinema_room }}</p>
+                <p>Seat: {{ seat }}</p>
+                <p>Date: {{ datetime.strftime(movie.date_time, '%d-%m-%Y') }}</p>
+                <p>Time: {{ datetime.strftime(movie.date_time, '%Hh%M') }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="btn">
+        <a href="/home/">Return to home page</a>
+    </div>
+{% endblock %}
