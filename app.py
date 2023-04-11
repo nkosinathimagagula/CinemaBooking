@@ -166,7 +166,6 @@ def checkout(movie_name, movie_id, cinema_room):
             
             # write to the seats table
             with db.engine.connect() as connection:
-                print(str(cinema_room), str(movie_id), seat_index[1], seat_index[0])
                 connection.execute(text('UPDATE seats' + str(cinema_room) + str(movie_id) + ' SET ' + seat_index[1] + ' = 1 WHERE id = ' + str(seat_index[0])))
                 connection.commit()
 
@@ -179,9 +178,28 @@ def checkout(movie_name, movie_id, cinema_room):
             db.session.add(ticket)
             db.session.commit()
 
-            return 'BOOKED SUCCESSFULLY!'
+        session['details'] = details
+
+        if len(details) == 1:
+            flash('Successfully booked. Your ticket is listed below.', 'message')
+        else:
+            flash('Successfully booked. Your tickets are listed below.', 'message')
+        return redirect('/home/movie/' + movie_name + '-' + str(movie_id) + '/booking/seat-selection-' + cinema_room + '/checkout/status/tickets')
     
     return render_template('checkout.html', seats_selected=seats_selected, movie=movie, len=len, datetime=datetime, enumerate=enumerate)
+
+
+@app.route('/home/movie/<string:movie_name>-<int:movie_id>/booking/seat-selection-<string:cinema_room>/checkout/status/tickets')
+def status(movie_name, movie_id, cinema_room):
+    details = session['details']
+    movie = Movie.query.filter_by(movie_id=movie_id).first()
+
+    tickets = []
+
+    for seat in details:
+        tickets.append(Ticket.query.filter_by(seat=seat).first())
+
+    return render_template('status.html', movie=movie, tickets=tickets, details=details, datetime=datetime, enumerate=enumerate)
 
 
 if __name__ == "__main__":
