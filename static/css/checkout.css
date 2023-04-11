@@ -1,0 +1,204 @@
+.top {
+    margin: 0px;
+    display: flex;
+}
+.top img {
+    height: 100px;
+}
+
+.content {
+    display: flex;
+}
+.content .checkout {
+    width: 60vw;
+    height: 80vh;
+    box-shadow: 5px 0px 5px -5px rgb(240, 248, 255, 0.5);
+}
+.checkout h1 {
+    margin: 0 1vw;
+}
+.checkout h2 {
+    margin: 2vh 1vw;
+}
+.checkout p {
+    margin: 1vh 1vw;
+}
+.checkout input {
+    margin: auto 1vw;
+    width: 58vw;
+    background-color: aliceblue;
+}
+.content .info {
+    width: 40vw;
+    height: 80vh;
+    box-shadow: -8px 0px 8px -10px rgb(240, 248, 255, 0.5);
+}
+.info h1 {
+    margin: 0vh 1vw;
+}
+.info h3 {
+    margin: 1vh 1vw;
+}
+.info small {
+    margin: 0 1vw;
+    color: #999999;
+}
+.info input {
+    margin: 0 1vw;
+    width: 35vw;
+    pointer-events: none;
+    background: transparent;
+    border: none;
+    color: #ffffff
+}
+.modal {
+    display: block;
+    position: fixed;
+    width: 100vw;
+    height: 80vh;
+    z-index: 1;
+    background-color: #000000dd;
+    animation-name: modalopacity;
+    animation-duration: 1s;
+}
+.heading {
+    position: fixed;
+    background-color: #000000;
+    width: 50vw;
+}
+.after {
+  margin-top: 12vh;  
+}
+.modal h2 {
+    margin: 2vh 1vw;
+}
+.modal_content {
+    position: relative;
+    margin: 10vh auto;
+    width: 50vw;
+    height: 50vh;
+    background-image: url('../img/photo.jpg');
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px #222222;
+    overflow: auto;
+
+    -ms-overflow-style: none;               /* for Internet Explorer, Edge */
+    scrollbar-width: none;                  /* for Firefox */
+
+    animation-name: fromtop;
+    animation-duration: 1s;
+}
+.modal_content::-webkit-scrollbar {         /* for Chrome, Safari, and Opera */
+    display: none;
+}
+.modal_content label {
+    margin: 1vh 1vw;
+}
+.modal_content #name {
+    margin: 1vh 5vw;
+}
+#seat {
+    margin: 3vh 2vw;
+}
+.modal_content input {
+    margin: 1vh 5.7vw;
+    width: 30vw;
+    background-color: aliceblue;
+}
+.done {
+    position: fixed;
+    width: 50vw;
+    bottom: 28vh;
+}
+.done button {
+    display: inline-block;
+    position: relative;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    font-size: medium;
+    margin: 0 46vw;
+    animation-name: btn;
+    animation-duration: 1s;
+}
+.done button::after {
+    content: '';
+    position: absolute;
+    width: 2vw;
+    padding-left: 10px;
+    transform: scaleX(0);
+    height: 1.5px;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition:  transform 0.3s ease-in-out;
+    margin: 2.5vh -2.6vw;
+}
+.done button:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+button:hover {
+    cursor: pointer;
+}
+.total {
+    position: fixed;
+    bottom: 10vh;
+    right: 1vw;
+}
+.btn button{
+    position: fixed;
+    right: 2vw;
+    bottom: 3vh;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    font-size: medium;
+}
+.btn button::after {
+    content: '';
+    position: absolute;
+    width: 4vw;
+    padding-left: 5px;
+    transform: scaleX(0);
+    height: 1.5px;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition:  transform 0.3s ease-in-out;
+    margin: 2.5vh -4.2vw;
+}
+.btn button:hover::after {
+    cursor: pointer;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+
+
+@keyframes fromtop {
+    from {
+        top: -100vh;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+@keyframes modalopacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes btn {
+    from {
+        top: -100vh;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}

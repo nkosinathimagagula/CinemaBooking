@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="top">
+        <a href="/home/">
+            <img src="{{ url_for('static', filename='img/landing.jpg') }}" alt="Failed to load image">
+        </a>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal_content">
+            <div class="heading" data-value="{{ len(seats_selected) }}">
+                <h2>Seat Details</h2>
+                <label>Seat No:</label>
+                <label id="name">Name & Lastname</label>
+            </div>
+
+            <div class="after">
+                {% for index, seat in enumerate(seats_selected) %}
+                    <label id="seat">{{ seat }}</label>
+                    <input type="text" id="name_{{ index }}">
+                    <br>
+                {% endfor %}
+            </div>
+
+            <div class="done">
+                <button id="button">Done</button>
+            </div>
+        </div>
+            
+    </div>
+
+    <form method="post">
+        <div class="content">
+            <div class="checkout">
+                <h1>Checkout</h1>
+                <div class="container">
+                        <p>Name</p>
+                        <input type="text" name="name">
+                        <p>Lastname</p>
+                        <input type="text" name="lastname">
+                        <p>Email</p>
+                        <input type="email" name="email">
+
+                        <h2>Card details</h2>
+
+                        <p>Name on Card</p>
+                        <input type="text" name="name_on_card">
+                        <p>Card Number</p>
+                        <input type="text" name="card_number">
+                        <p>Exp Date</p>
+                        <input type="month" name="exp_date">
+                        <p>CVV</p>
+                        <input type="text" name="cvv">
+                </div>
+            </div>
+
+            <div class="info">
+                <h1>Details</h1>
+                <h3>{{ movie.name }}</h3>
+                <br>
+                <small>Cinema {{ movie.cinema_room }}</small>
+                <br>
+                <small>{{ datetime.strftime(movie.date_time, '%d-%m-%Y') }}</small>
+                <br>
+                <small>{{ datetime.strftime(movie.date_time, '%Hh%M') }}</small>
+                <br>
+                <small>Seats selected: {{ seats_selected }}</small>
+                <br>
+                <br>
+
+                    {% for index, seat in enumerate(seats_selected) %}
+                        <input type="text" id="c_{{ index }}" name="c_{{ index }}">
+                    {% endfor %}
+
+                <h1 class="total">Total: R{{ movie.price * len(seats_selected) }}.00</h1>
+            </div>
+        </div>
+
+        <div class="btn">
+            <button type="submit">Checkout</button>
+        </div>
+    </form>
+    <script src="{{ url_for('static', filename='js/checkout.js') }}"></script>
+{% endblock %}
