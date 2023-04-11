@@ -1,14 +1,19 @@
 from base64 import b64encode
 from re import sub
+from random import choices
+from string import ascii_letters, hexdigits, digits
 from database import db
+
 
 def decode_image(movie):
     return b64encode(movie.image).decode('ascii')
+
 
 def remove_special_chars(chars):
     special_char_regex = r'[^a-zA-Z0-9\s]+'
 
     return sub(special_char_regex, '', chars)
+
 
 def create_seats(movie_added):
     # Dynamically creating a class for cinema room seats for each movie added
@@ -46,3 +51,39 @@ def __init__(self, c1, c2, c3, c4, c5, c6, c7, c8):
         row = locals()['Seats' + str(movie_added.cinema_room) + str(movie_added.movie_id)](0, 0, 0, 0, 0, 0, 0, 0)
         db.session.add(row)
         db.session.commit()
+
+
+def createTicketNumber(movie_name):
+    chars = movie_name[0] + movie_name[-1]
+    rand = chars.join(choices(ascii_letters, k=2)) + ''.join(choices(hexdigits + digits, k=8))
+    return rand.upper()
+
+
+def formatColumn(number):
+    if number == '1':
+        return 'c1'
+    elif number == '2':
+        return 'c2'
+    elif number == '3':
+        return 'c3'
+    elif number == '4':
+        return 'c4'
+    elif number == '5':
+        return 'c5'
+    elif number == '6':
+        return 'c6'
+    elif number == '7':
+        return 'c7'
+    elif number == '8':
+        return 'c8'
+
+
+def formatRow(letter):
+    if letter == 'A':
+        return 1
+    elif letter == 'B':
+        return 2
+    elif letter == 'C':
+        return 3
+    elif letter == 'D':
+        return 4

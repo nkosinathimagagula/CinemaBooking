@@ -1,9 +1,9 @@
 from flask import render_template, flash, redirect, request, session
 from admin import admin_page
-from database import app, db, User, Movie
+from database import app, db, User, Movie, Ticket
 from sqlalchemy import text
 from datetime import datetime
-from utils import decode_image, remove_special_chars
+from utils import decode_image, remove_special_chars, createTicketNumber, formatRow, formatColumn
 
 
 # Register admin routes ---------------------------------------------------------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ def home():
         movies[category] = [locals()[category.lower()], locals()[category.lower() + '_images']]
 
 
-    return render_template('home.html', movies=movies, zip=zip, datetime=datetime, format_str=remove_special_chars)
+    return render_template('home.html', movies=movies, zip=zip, datetime=datetime, len=len, format_str=remove_special_chars)
 
 
 @app.route('/home/movie/<string:movie_name>-<int:movie_id>/details')
@@ -136,7 +136,52 @@ def seat_selection(movie_name, movie_id, cinema_room):
 
 @app.route('/home/movie/<string:movie_name>-<int:movie_id>/booking/seat-selection-<string:cinema_room>/checkout/', methods=['GET', 'POST'])
 def checkout(movie_name, movie_id, cinema_room):
-    return session['seats_selected']
+    seats_selected = session['seats_selected'].split(',')
+    movie = Movie.query.filter_by(movie_id=movie_id).first()
+
+    details = {}
+
+    if request.method == 'POST':
+        # work on this card info later ------------------------------- !!!
+        name = request.form['name']
+        lastname = request.form['lastname']
+        email = request.form['email']
+
+        name_on_card = request.form['name_on_card']
+        card_number = request.form['card_number']
+        exp_date = request.form['exp_date']
+        cvv = request.form['cvv']
+        # ------------------------------------------------------------ !!!
+
+
+        for index, seat in enumerate(seats_selected):
+            names = request.form['c_' + str(index)]
+
+            details[seat] = names
+
+            # CRUD operations on the database
+
+            # change seat number to 2D array indexing
+            seat_index = [formatRow(seat[0]), formatColumn(seat[1])]
+            
+            # write to the seats table
+            with db.engine.connect() as connection:
+                print(str(cinema_room), str(movie_id), seat_index[1], seat_index[0])
+                connection.execute(text('UPDATE seats' + str(cinema_room) + str(movie_id) + ' SET ' + seat_index[1] + ' = 1 WHERE id = ' + str(seat_index[0])))
+                connection.commit()
+
+            # Create a ticket and add it to the database
+            ticket = Ticket(createTicketNumber(movie_name), names.split(' ')[0], names.split(' ')[1], movie.name, cinema_room, seat)
+
+            movie.available_seats = movie.available_seats - 1
+            movie.sold_seats = movie.sold_seats + 1
+
+            db.session.add(ticket)
+            db.session.commit()
+
+            return 'BOOKED SUCCESSFULLY!'
+    
+    return render_template('checkout.html', seats_selected=seats_selected, movie=movie, len=len, datetime=datetime, enumerate=enumerate)
 
 
 if __name__ == "__main__":
