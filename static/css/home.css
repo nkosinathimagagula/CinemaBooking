@@ -46,7 +46,7 @@
     border-radius: 5px;
     width: 140px;
     height: 200px;
-    margin-left: 10px;
+    margin: 10px;
 }
 .images img:hover {
     box-shadow: 0 0 8px 2px #aaaaaa;

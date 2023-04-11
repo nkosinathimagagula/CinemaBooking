@@ -30,32 +30,33 @@
     </div>
     <div class="content">
         {% for category in movies %}
-            <h2>{{ category }}</h2>
-            <div class="images">
-                {% for (movie, image) in zip(movies[category][0], movies[category][1]) %}
-                    <div class="details">
-                        <a href="/home/movie/{{ format_str(movie.name.lower()) }}-{{ movie.movie_id }}/details">
-                            <img src="data:;base64,{{ image }}" alt="Failed to load image">
+            {% if len(movies[category][0]) != 0 %}
+                <h2>{{ category }}</h2>
+                <div class="images">
+                    {% for (movie, image) in zip(movies[category][0], movies[category][1]) %}
+                        <div class="details">
+                            <a href="/home/movie/{{ format_str(movie.name.lower()) }}-{{ movie.movie_id }}/details">
+                                <img src="data:;base64,{{ image }}" alt="Failed to load image">
 
-                            <p id="text">
-                                {{ movie.name }}
-                                <br> 
+                                <p id="text">
+                                    {{ movie.name }}
+                                    <br> 
+                                </p>
+                            </a>
+                            
+                            <p id="text2">
+                                Price: R{{ movie.price }}.00
+                                <br>
+                                Seats sold: {{ movie.sold_seats }}
+                                <br>
+                                Seats available: {{ movie.available_seats }}
+                                <br>
+                                Time: {{ datetime.strftime(movie.date_time, "%Hh%M") }}
                             </p>
-                        </a>
-                        
-                        <p id="text2">
-                            Price: R{{ movie.price }}.00
-                            <br>
-                            Seats sold: {{ movie.sold_seats }}
-                            <br>
-                            Seats available: {{ movie.available_seats }}
-                            <br>
-                            Time: {{ datetime.strftime(movie.date_time, "%Hh%M") }}
-                        </p>
-                    </div> 
-                {% endfor %}
-            </div>
+                        </div> 
+                    {% endfor %}
+                </div>
+            {% endif %}
         {% endfor %}
-         
     </div>
 {% endblock %}
