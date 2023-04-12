@@ -26,7 +26,14 @@
 .checkout input {
     margin: auto 1vw;
     width: 58vw;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid #ffffff;
+    color: #ffffff;
+}
+.checkout input:focus {
+    outline: none;
 }
 .content .info {
     width: 40vw;
@@ -103,7 +110,14 @@
 .modal_content input {
     margin: 1vh 5.7vw;
     width: 30vw;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid #ffffff;
+    color: #ffffff;
+}
+.modal_content input:focus {
+    outline: none;
 }
 .done {
     position: fixed;
